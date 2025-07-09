@@ -59,7 +59,7 @@ const Maintenance = () => {
         },
       };
 
-      let url = `http://localhost:8888/api/maintenance?page=${currentPage}&limit=${limit}`;
+      let url = `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/maintenance?page=${currentPage}&limit=${limit}`;
 
       if (searchTerm) {
         url += `&search=${searchTerm}`;
@@ -91,7 +91,7 @@ const Maintenance = () => {
       };
 
       const response = await axios.get(
-        "http://localhost:8888/api/vehicles?limit=1000",
+        `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/vehicles?limit=1000`,
         config
       );
       setVehicles(response.data.data);
@@ -176,14 +176,14 @@ const Maintenance = () => {
       if (selectedRecord) {
         // Update existing maintenance record
         await axios.put(
-          8888`http://localhost:8888/api/maintenance/${selectedRecord._id}`,
+          `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/maintenance/${selectedRecord._id}`,
           formData,
           config
         );
       } else {
         // Create new maintenance record
         await axios.post(
-          "http://localhost:8888/api/maintenance",
+          `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/maintenance`,
           formData,
           config
         );
@@ -206,7 +206,7 @@ const Maintenance = () => {
         };
 
         await axios.delete(
-          `http://localhost:8888/api/maintenance/${id}`,
+          `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/maintenance/${id}`,
           config
         );
         fetchMaintenanceRecords();
@@ -228,7 +228,7 @@ const Maintenance = () => {
       };
 
       await axios.put(
-        `http://localhost:8888/api/maintenance/${id}/status`,
+        `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/maintenance/${id}/status`,
         { status: newStatus },
         config
       );

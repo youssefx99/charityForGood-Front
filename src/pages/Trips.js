@@ -59,7 +59,7 @@ const Trips = () => {
         },
       };
 
-      let url = `http://localhost:8888/api/trips?page=${currentPage}&limit=${limit}`;
+      let url = `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/trips?page=${currentPage}&limit=${limit}`;
 
       if (searchTerm) {
         url += `&search=${searchTerm}`;
@@ -91,7 +91,7 @@ const Trips = () => {
       };
 
       const response = await axios.get(
-        "http://localhost:8888/api/vehicles?status=available&limit=1000",
+        `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/vehicles?status=available&limit=1000`,
         config
       );
       setVehicles(response.data.data);
@@ -176,13 +176,13 @@ const Trips = () => {
       if (selectedTrip) {
         // Update existing trip
         await axios.put(
-          `http://localhost:8888/api/trips/${selectedTrip._id}`,
+          `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/trips/${selectedTrip._id}`,
           formData,
           config
         );
       } else {
         // Create new trip
-        await axios.post("http://localhost:8888/api/trips", formData, config);
+        await axios.post(`${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/trips`, formData, config);
       }
 
       handleCloseModal();
@@ -204,7 +204,7 @@ const Trips = () => {
           },
         };
 
-        await axios.delete(`http://localhost:8888/api/trips/${id}`, config);
+        await axios.delete(`${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/trips/${id}`, config);
         fetchTrips();
         fetchVehicles(); // Refresh vehicles as their status might change
       } catch (err) {
@@ -223,7 +223,7 @@ const Trips = () => {
       };
 
       await axios.put(
-        `http://localhost:8888/api/trips/${id}/status`,
+        `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/trips/${id}/status`,
         { status: newStatus },
         config
       );

@@ -19,7 +19,7 @@ export const register = createAsyncThunk(
   async (userData, thunkAPI) => {
     try {
       const response = await axios.post(
-        "http://localhost:8888/api/auth/register",
+        `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/auth/register`,
         userData
       );
       if (response.data) {
@@ -44,7 +44,7 @@ export const login = createAsyncThunk(
   async (userData, thunkAPI) => {
     try {
       const response = await axios.post(
-        "http://localhost:8888/api/auth/login",
+        `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/auth/login`,
         userData,
         {
           withCredentials: true,

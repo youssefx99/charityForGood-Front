@@ -54,7 +54,7 @@ const Expenses = () => {
         },
       };
 
-      let url = `http://localhost:8888/api/expenses?page=${currentPage}&limit=${limit}`;
+      let url = `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/expenses?page=${currentPage}&limit=${limit}`;
 
       if (searchTerm) {
         url += `&search=${searchTerm}`;
@@ -147,14 +147,14 @@ const Expenses = () => {
       if (selectedExpense) {
         // Update existing expense
         await axios.put(
-          `http://localhost:8888/api/expenses/${selectedExpense._id}`,
+          `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/expenses/${selectedExpense._id}`,
           formData,
           config
         );
       } else {
         // Create new expense
         await axios.post(
-          "http://localhost:8888/api/expenses",
+          `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/expenses`,
           formData,
           config
         );
@@ -178,7 +178,7 @@ const Expenses = () => {
           },
         };
 
-        await axios.delete(`http://localhost:8888/api/expenses/${id}`, config);
+        await axios.delete(`${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/expenses/${id}`, config);
         fetchExpenses();
       } catch (err) {
         setError(err.response?.data?.message || "حدث خطأ أثناء حذف المصروف");
@@ -196,7 +196,7 @@ const Expenses = () => {
       };
 
       await axios.put(
-        `http://localhost:8888/api/expenses/${id}/approve`,
+        `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/expenses/${id}/approve`,
         {},
         config
       );
@@ -218,7 +218,7 @@ const Expenses = () => {
       };
 
       await axios.put(
-        `http://localhost:8888/api/expenses/${id}/reject`,
+        `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/expenses/${id}/reject`,
         {},
         config
       );

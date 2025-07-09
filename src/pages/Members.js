@@ -54,7 +54,7 @@ const Members = () => {
         }
       };
 
-      let url = `http://localhost:8888/api/members?page=${currentPage}&limit=${limit}`;
+      let url = `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/members?page=${currentPage}&limit=${limit}`;
       
       if (searchTerm) {
         url += `&search=${searchTerm}`;
@@ -180,13 +180,13 @@ const Members = () => {
       if (selectedMember) {
         // Update existing member
         await axios.put(
-          `http://localhost:8888/api/members/${selectedMember._id}`,
+          `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/members/${selectedMember._id}`,
           formData,
           config
         );
       } else {
         // Create new member
-        await axios.post("http://localhost:8888/api/members", formData, config);
+        await axios.post(`${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/members`, formData, config);
       }
 
       handleCloseModal();
@@ -205,7 +205,7 @@ const Members = () => {
           }
         };
 
-        await axios.delete(`http://localhost:8888/api/members/${id}`, config);
+        await axios.delete(`${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/members/${id}`, config);
         fetchMembers();
       } catch (err) {
         setError(err.response?.data?.message || 'حدث خطأ أثناء حذف العضو');

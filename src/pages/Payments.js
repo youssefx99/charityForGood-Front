@@ -60,7 +60,7 @@ const Payments = () => {
         },
       };
 
-      let url = `http://localhost:8888/api/payments?page=${currentPage}&limit=${limit}`;
+      let url = `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/payments?page=${currentPage}&limit=${limit}`;
 
       if (searchTerm) {
         url += `&search=${searchTerm}`;
@@ -92,7 +92,7 @@ const Payments = () => {
       };
 
       const response = await axios.get(
-        "http://localhost:8888/api/members?limit=1000",
+        `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/members?limit=1000`,
         config
       );
       setMembers(response.data.data);
@@ -189,14 +189,14 @@ const Payments = () => {
       if (selectedPayment) {
         // Update existing payment
         await axios.put(
-          `http://localhost:8888/api/payments/${selectedPayment._id}`,
+          `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/payments/${selectedPayment._id}`,
           formData,
           config
         );
       } else {
         // Create new payment
         await axios.post(
-          "http://localhost:8888/api/payments",
+          `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/payments`,
           formData,
           config
         );
@@ -220,7 +220,7 @@ const Payments = () => {
           },
         };
 
-        await axios.delete(`http://localhost:8888/api/payments/${id}`, config);
+        await axios.delete(`${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/payments/${id}`, config);
         fetchPayments();
       } catch (err) {
         setError(err.response?.data?.message || "حدث خطأ أثناء حذف المدفوعات");

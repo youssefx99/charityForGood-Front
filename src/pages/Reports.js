@@ -74,7 +74,7 @@ const Reports = () => {
       };
 
       const response = await axios.get(
-        `http://localhost:8888/api/reports/members?startDate=${dateRange.startDate}&endDate=${dateRange.endDate}`,
+        `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/reports/members?startDate=${dateRange.startDate}&endDate=${dateRange.endDate}`,
         config
       );
       setMemberReport(response.data.data);
@@ -97,7 +97,7 @@ const Reports = () => {
       };
 
       const response = await axios.get(
-        `http://localhost:8888/api/reports/financial?startDate=${dateRange.startDate}&endDate=${dateRange.endDate}`,
+        `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/reports/financial?startDate=${dateRange.startDate}&endDate=${dateRange.endDate}`,
         config
       );
       setFinancialReport(response.data.data);
@@ -120,7 +120,7 @@ const Reports = () => {
       };
 
       const response = await axios.get(
-        `http://localhost:8888/api/reports/vehicles?startDate=${dateRange.startDate}&endDate=${dateRange.endDate}`,
+        `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/reports/vehicles?startDate=${dateRange.startDate}&endDate=${dateRange.endDate}`,
         config
       );
       setVehicleReport(response.data.data);
@@ -161,13 +161,13 @@ const Reports = () => {
 
       let url = '';
       if (activeTab === 'members') {
-        url = `http://localhost:8888/api/pdf/members?startDate=${dateRange.startDate}&endDate=${dateRange.endDate}`;
+        url = `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/pdf/members?startDate=${dateRange.startDate}&endDate=${dateRange.endDate}`;
       } else if (activeTab === 'financial') {
-        url = `http://localhost:8888/api/pdf/financial?startDate=${dateRange.startDate}&endDate=${dateRange.endDate}`;
+        url = `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/pdf/financial?startDate=${dateRange.startDate}&endDate=${dateRange.endDate}`;
       } else if (activeTab === 'vehicles') {
-        url = `http://localhost:8888/api/pdf/vehicles?startDate=${dateRange.startDate}&endDate=${dateRange.endDate}`;
+        url = `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/pdf/vehicles?startDate=${dateRange.startDate}&endDate=${dateRange.endDate}`;
       } else {
-        url = `http://localhost:8888/api/pdf/comprehensive?startDate=${dateRange.startDate}&endDate=${dateRange.endDate}`;
+        url = `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/pdf/comprehensive?startDate=${dateRange.startDate}&endDate=${dateRange.endDate}`;
       }
 
       const response = await axios.get(url, config);

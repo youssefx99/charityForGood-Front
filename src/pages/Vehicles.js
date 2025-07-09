@@ -57,7 +57,7 @@ const Vehicles = () => {
         },
       };
 
-      let url = `http://localhost:8888/api/vehicles?page=${currentPage}&limit=${limit}`;
+      let url = `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/vehicles?page=${currentPage}&limit=${limit}`;
 
       if (searchTerm) {
         url += `&search=${searchTerm}`;
@@ -156,14 +156,14 @@ const Vehicles = () => {
       if (selectedVehicle) {
         // Update existing vehicle
         await axios.put(
-          `http://localhost:8888/api/vehicles/${selectedVehicle._id}`,
+          `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/vehicles/${selectedVehicle._id}`,
           formData,
           config
         );
       } else {
         // Create new vehicle
         await axios.post(
-          "http://localhost:8888/api/vehicles",
+          `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/vehicles`,
           formData,
           config
         );
@@ -187,7 +187,7 @@ const Vehicles = () => {
           },
         };
 
-        await axios.delete(`http://localhost:8888/api/vehicles/${id}`, config);
+        await axios.delete(`${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/vehicles/${id}`, config);
         fetchVehicles();
       } catch (err) {
         setError(err.response?.data?.message || "حدث خطأ أثناء حذف المركبة");
@@ -205,7 +205,7 @@ const Vehicles = () => {
       };
 
       await axios.put(
-        `http://localhost:8888/api/vehicles/${id}/status`,
+        `${process.env.REACT_APP_API_URL || 'http://localhost:8888/api'}/vehicles/${id}/status`,
         { status: newStatus },
         config
       );
