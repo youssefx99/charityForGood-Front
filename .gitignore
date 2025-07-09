@@ -92,7 +92,6 @@ dist
 
 # Gatsby files
 .cache/
-public
 
 # Storybook build outputs
 .out
@@ -120,7 +119,6 @@ Thumbs.db
 
 # React specific
 # See https://create-react-app.dev/docs/using-the-public-folder/ for more information.
-public/
 
 # Testing
 /coverage
