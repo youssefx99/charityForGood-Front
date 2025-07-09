@@ -12,7 +12,6 @@ yarn-error.log*
 .env.production.local
 
 # Production build files
-build/
 dist/
 
 # Logs
@@ -46,7 +45,6 @@ bower_components
 .lock-wscript
 
 # Compiled binary addons (https://nodejs.org/api/addons.html)
-build/Release
 
 # Dependency directories
 node_modules/
@@ -55,8 +53,6 @@ jspm_packages/
 # TypeScript v1 declaration files
 typings/
 
-# TypeScript cache
-*.tsbuildinfo
 
 # Optional npm cache directory
 .npm
@@ -129,8 +125,6 @@ public/
 # Testing
 /coverage
 
-# Production
-/build
 
 # Misc
 .DS_Store
