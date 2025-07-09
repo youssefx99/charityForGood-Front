@@ -129,6 +129,36 @@ npm start
 
 ---
 
+## 🚀 **Deployment to Vercel**
+
+### **Frontend Deployment:**
+
+1. **Install Vercel CLI:**
+   ```bash
+   npm install -g vercel
+   ```
+
+2. **Deploy to Vercel:**
+   ```bash
+   vercel
+   ```
+
+3. **Environment Variables Setup:**
+   - Go to your Vercel dashboard
+   - Navigate to your project settings
+   - Add the following environment variable:
+     - `REACT_APP_API_URL`: Your backend API URL (e.g., `https://your-backend-api.vercel.app/api`)
+
+4. **Automatic Deployments:**
+   - Connect your GitHub repository to Vercel
+   - Every push to main branch will trigger automatic deployment
+
+### **Backend Deployment:**
+- Deploy your backend separately (Vercel, Heroku, Railway, etc.)
+- Update the `REACT_APP_API_URL` environment variable in Vercel with your backend URL
+
+---
+
 ## 👨‍💻 **Contributing & Development**
 
 1. **Fork** the project on GitHub
@@ -151,3 +181,4 @@ npm start
 - Ensure sensitive environment variables are changed in production (`JWT_SECRET`, `MONGO_URI`)
 - Use HTTPS in production environment
 - Regularly review user permissions
+- Set up proper CORS configuration for your backend API
